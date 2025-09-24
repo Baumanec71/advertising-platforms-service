@@ -45,6 +45,7 @@ namespace advertising_platforms_service.Service.Implementations
                 using (StreamReader reader = new StreamReader(_filePath))
                 {
                     string? line;
+
                     while ((line = await reader.ReadLineAsync()) != null)
                     {
                         if (string.IsNullOrWhiteSpace(line)) continue;

@@ -72,24 +72,22 @@ namespace advertising_platforms_service.Service.Implementations
 
         private List<AdvertisingPlatformViewModel> SearchForLocation(string location, ConcurrentDictionary<string, List<string>> allAdvertisingPlatformViewModels)
         {
-            var result = new HashSet<string>();   
+            var result = new HashSet<string>();
+            var currentLocation = location;
 
             while (!string.IsNullOrEmpty(location)) 
             {
-                if (allAdvertisingPlatformViewModels.TryGetValue(location, out var findPlatforms))
+                if (allAdvertisingPlatformViewModels.TryGetValue(currentLocation, out var findPlatforms))
                 {
                     result.UnionWith(findPlatforms);
                 }
 
-                var lastIndex = location
+                var lastIndex = currentLocation
                     .LastIndexOf("/");
 
-                if (lastIndex <= 0) 
-                {
-                    break;
-                }
+                if (lastIndex <= 0) break;
 
-                location = location
+                currentLocation = currentLocation
                     .Substring(0, lastIndex);
             }
             
