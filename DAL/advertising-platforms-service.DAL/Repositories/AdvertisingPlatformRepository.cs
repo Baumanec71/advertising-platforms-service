@@ -29,7 +29,7 @@ namespace advertising_platforms_service.DAL.Repositories
 
             foreach (var kvp in newPlatforms)
             {
-                copy[kvp.Key] = kvp.Value;
+                copy[kvp.Key] = new List<string>(kvp.Value);
             }
 
             _platformsWithLocations = copy;

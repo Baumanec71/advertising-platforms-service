@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\DAL\advertising-platforms-service.DAL\advertising-platforms-service.DAL.csproj" />
+    <ProjectReference Include="..\Service\advertising-platforms-service.Service\advertising-platforms-service.Service.csproj" />
   </ItemGroup>
 
 </Project>

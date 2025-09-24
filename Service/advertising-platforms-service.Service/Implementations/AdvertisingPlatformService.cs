@@ -11,14 +11,14 @@ namespace advertising_platforms_service.Service.Implementations
     public class AdvertisingPlatformService : IAdvertisingPlatformService
     {
         private readonly IAdvertisingPlatformRepository _advertisingPlatformRepository;
-        private readonly ILogger _logger;
+        private readonly ILogger<AdvertisingPlatformService> _logger;
         const int pageSize = 10;
-        public AdvertisingPlatformService(IAdvertisingPlatformRepository advertisingPlatformRepository, ILogger logger)
+        public AdvertisingPlatformService(IAdvertisingPlatformRepository advertisingPlatformRepository, ILogger<AdvertisingPlatformService> logger)
         {
             _advertisingPlatformRepository = advertisingPlatformRepository;
             _logger = logger;
         }
-        public IBaseResponse<PaginatedViewModelResponse<AdvertisingPlatformViewModel, AdvertisingPlatformFilterModel>> GetPlatforms(int page, AdvertisingPlatformFilterModel advertisingPlatformFilterModel)
+        public IBaseResponse<PaginatedViewModelResponse<AdvertisingPlatformViewModel, AdvertisingPlatformFilterModel>> GetPlatforms(int page, AdvertisingPlatformFilterModel? advertisingPlatformFilterModel)
         {
             try
             {
@@ -28,16 +28,15 @@ namespace advertising_platforms_service.Service.Implementations
 
                 if (!string.IsNullOrEmpty(advertisingPlatformFilterModel?.Location))
                 {
-                    advertisingPlatformViewModels = allAdvertisingPlatformViewModels
-                        .Where(x => x.Key
-                            .Contains(advertisingPlatformFilterModel.Location))
-                        .Select(x => new AdvertisingPlatformViewModel(x.Key, x.Value))
-                        .ToList();
+                    advertisingPlatformViewModels = SearchForLocation(advertisingPlatformFilterModel.Location, allAdvertisingPlatformViewModels);
                 }
                 else
                 {
                     advertisingPlatformViewModels = allAdvertisingPlatformViewModels
-                        .Select(x => new AdvertisingPlatformViewModel(x.Key, x.Value))
+                        .SelectMany(x => x.Value.Select(platformName =>
+                            new AdvertisingPlatformViewModel(platformName)))
+                        .OrderBy(x => x.name)
+                        .Distinct()
                         .ToList();
                 }
 
@@ -71,13 +70,42 @@ namespace advertising_platforms_service.Service.Implementations
             }
         }
 
-        public IBaseResponse<AdvertisingPlatformViewModel> Update(ConcurrentDictionary<string, List<string>> newPlatforms)
+        private List<AdvertisingPlatformViewModel> SearchForLocation(string location, ConcurrentDictionary<string, List<string>> allAdvertisingPlatformViewModels)
+        {
+            var result = new HashSet<string>();   
+
+            while (!string.IsNullOrEmpty(location)) 
+            {
+                if (allAdvertisingPlatformViewModels.TryGetValue(location, out var findPlatforms))
+                {
+                    result.UnionWith(findPlatforms);
+                }
+
+                var lastIndex = location
+                    .LastIndexOf("/");
+
+                if (lastIndex <= 0) 
+                {
+                    break;
+                }
+
+                location = location
+                    .Substring(0, lastIndex);
+            }
+            
+            return result
+                .Select(x => new AdvertisingPlatformViewModel(x))
+                .OrderBy(x => x.name)
+                .ToList();      
+        }
+
+        public IBaseResponse<bool> Update(ConcurrentDictionary<string, List<string>> newPlatforms)
         {
             try
             {
                 if (newPlatforms == null || !newPlatforms.Any())
                 {
-                    return new BaseResponse<AdvertisingPlatformViewModel>()
+                    return new BaseResponse<bool>()
                     {
                         StatusCode = HttpStatusCode.BadRequest,
                         Description = "Нет данных для обновления",
@@ -90,7 +118,7 @@ namespace advertising_platforms_service.Service.Implementations
                 _advertisingPlatformRepository.Update(newPlatforms);
                 _logger.LogInformation("Хранилище с данными заполнено");
 
-                return new BaseResponse<AdvertisingPlatformViewModel>()
+                return new BaseResponse<bool>()
                 {
                     StatusCode = HttpStatusCode.OK,
                     Description = $"Данные обновлены успешно!",
@@ -98,7 +126,7 @@ namespace advertising_platforms_service.Service.Implementations
             }
             catch (Exception ex)
             {
-                return new BaseResponse<AdvertisingPlatformViewModel>()
+                return new BaseResponse<bool>()
                 {
                     StatusCode = HttpStatusCode.InternalServerError,
                     Description = $"Ошибка при получении платформ: {ex.Message}",

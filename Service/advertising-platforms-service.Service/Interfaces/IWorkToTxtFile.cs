@@ -5,6 +5,6 @@ namespace advertising_platforms_service.Service.Interfaces
 {
     public interface IWorkToTxtFile
     {
-        Task<IBaseResponse<ConcurrentDictionary<string, List<string>>>> ReadFile(string path);
+        Task<IBaseResponse<ConcurrentDictionary<string, List<string>>>> ReadFile();
     }
 }

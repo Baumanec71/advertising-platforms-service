@@ -6,7 +6,7 @@ namespace advertising_platforms_service.Service.Interfaces
 {
     public interface IAdvertisingPlatformService
     {
-        IBaseResponse<PaginatedViewModelResponse<AdvertisingPlatformViewModel, AdvertisingPlatformFilterModel>> GetPlatforms(int page, AdvertisingPlatformFilterModel advertisingPlatformFilterModel);
-        IBaseResponse<AdvertisingPlatformViewModel> Update(ConcurrentDictionary<string, List<string>> newPlatforms);
+        IBaseResponse<PaginatedViewModelResponse<AdvertisingPlatformViewModel, AdvertisingPlatformFilterModel>> GetPlatforms(int page, AdvertisingPlatformFilterModel? advertisingPlatformFilterModel);
+        IBaseResponse<bool> Update(ConcurrentDictionary<string, List<string>> newPlatforms);
     }
 }
