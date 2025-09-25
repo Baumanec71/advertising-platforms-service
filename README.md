@@ -38,9 +38,11 @@
 Выполненное тестовое задание необходимо опубликовать на GitHub, также необходимо
 приложить инструкцию по запуску веб сервиса в файле. Юнит тесты приветствуются.
 
-# Клонирование репозитория (замените на ваш репозиторий)
+# Клонирование репозитория
 git clone https://github.com/Baumanec71/advertising-platforms-service.git
-cd advertising-platforms-service
+
+# Переход в папку с проектом
+cd advertising-platforms-service/advertising-platforms-service
 
 # Восстановление зависимостей
 dotnet restore
