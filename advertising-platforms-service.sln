@@ -1,9 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36429.23 d17.14
+VisualStudioVersion = 17.14.36429.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "advertising-platforms-service", "advertising-platforms-service\advertising-platforms-service.csproj", "{AFFB5224-E006-4575-BBF8-D9B3AAFF4856}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{14A40E93-2A60-47E4-99C5-CC245AD442F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{CA431F18-1643-4472-8E28-6688F8EB7274}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2F61831F-57DC-464A-A25B-090BC780433A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{24122D6A-2283-414C-9351-8373E3DB5B80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "advertising-platforms-service.Domain", "Domain\advertising-platforms-service.Domain\advertising-platforms-service.Domain.csproj", "{23247D0A-E57E-48D9-93A7-846C9594B8F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "advertising-platforms-service.Service", "Service\advertising-platforms-service.Service\advertising-platforms-service.Service.csproj", "{39AABD0B-6265-4DD9-93D1-AA457878EF1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{2D57ABBE-A22E-4952-BE2A-98394E4356E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "advertising-platforms-service.DAL", "DAL\advertising-platforms-service.DAL\advertising-platforms-service.DAL.csproj", "{41148D0B-3D9E-4840-A79D-E8AB7E366A06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "advertising-platforms-service.ControllersTests", "Tests\advertising-platforms-service.ControllersTests\advertising-platforms-service.ControllersTests.csproj", "{5A9B6719-8248-4B54-8D1E-B380BF83A919}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "advertising-platforms-service.Implementations", "Tests\advertising-platforms-service.Implementations\advertising-platforms-service.Implementations.csproj", "{F0E686D8-5BF1-40A0-BD01-F9F1DC8B3BC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +37,38 @@ Global
 		{AFFB5224-E006-4575-BBF8-D9B3AAFF4856}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFFB5224-E006-4575-BBF8-D9B3AAFF4856}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFFB5224-E006-4575-BBF8-D9B3AAFF4856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23247D0A-E57E-48D9-93A7-846C9594B8F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23247D0A-E57E-48D9-93A7-846C9594B8F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23247D0A-E57E-48D9-93A7-846C9594B8F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23247D0A-E57E-48D9-93A7-846C9594B8F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39AABD0B-6265-4DD9-93D1-AA457878EF1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39AABD0B-6265-4DD9-93D1-AA457878EF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39AABD0B-6265-4DD9-93D1-AA457878EF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39AABD0B-6265-4DD9-93D1-AA457878EF1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41148D0B-3D9E-4840-A79D-E8AB7E366A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41148D0B-3D9E-4840-A79D-E8AB7E366A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41148D0B-3D9E-4840-A79D-E8AB7E366A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41148D0B-3D9E-4840-A79D-E8AB7E366A06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A9B6719-8248-4B54-8D1E-B380BF83A919}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A9B6719-8248-4B54-8D1E-B380BF83A919}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A9B6719-8248-4B54-8D1E-B380BF83A919}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A9B6719-8248-4B54-8D1E-B380BF83A919}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0E686D8-5BF1-40A0-BD01-F9F1DC8B3BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0E686D8-5BF1-40A0-BD01-F9F1DC8B3BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0E686D8-5BF1-40A0-BD01-F9F1DC8B3BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0E686D8-5BF1-40A0-BD01-F9F1DC8B3BC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AFFB5224-E006-4575-BBF8-D9B3AAFF4856} = {24122D6A-2283-414C-9351-8373E3DB5B80}
+		{24122D6A-2283-414C-9351-8373E3DB5B80} = {14A40E93-2A60-47E4-99C5-CC245AD442F7}
+		{23247D0A-E57E-48D9-93A7-846C9594B8F5} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{39AABD0B-6265-4DD9-93D1-AA457878EF1D} = {CA431F18-1643-4472-8E28-6688F8EB7274}
+		{41148D0B-3D9E-4840-A79D-E8AB7E366A06} = {2D57ABBE-A22E-4952-BE2A-98394E4356E4}
+		{5A9B6719-8248-4B54-8D1E-B380BF83A919} = {2F61831F-57DC-464A-A25B-090BC780433A}
+		{F0E686D8-5BF1-40A0-BD01-F9F1DC8B3BC3} = {2F61831F-57DC-464A-A25B-090BC780433A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1889D1C8-FABA-413C-B12B-6EF04FBE2486}
