@@ -12,7 +12,6 @@ using Assert = Xunit.Assert;
 
 namespace advertising_platforms_service.ControllersTests
 {
-    [TestClass]
     public class AdvertisingPlatformControllerTests
     {
         private readonly Mock<IAdvertisingPlatformService> _mockService;
