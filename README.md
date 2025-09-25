@@ -49,3 +49,6 @@ dotnet restore
 
 # Запуск приложения
 dotnet run
+
+# Переход в Swagger
+http://localhost:5263/swagger/index.html
